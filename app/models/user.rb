@@ -4,4 +4,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :terms_of_service, :acceptance => true
+  enum role: [:Customer, :Superadmin]
 end

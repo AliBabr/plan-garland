@@ -1,29 +1,4 @@
-<!--<h2>Log in 123123</h2>-->
-
-<!--  <div class="field">-->
-<!--    <%#= f.label :email %><br />-->
-<%#= f.email_field :email, autofocus: true, autocomplete: "email" %>
-<!--  </div>-->
-
-<!--  <div class="field">-->
-<!--    <%#= f.label :password %><br />-->
-<%#= f.password_field :password, autocomplete: "current-password" %>
-<!--  </div>-->
-
-<%# if devise_mapping.rememberable? %>
-<!--    <div class="field">-->
-<%#= f.check_box :remember_me %>
-<%#= f.label :remember_me %>
-<!--    </div>-->
-<%# end %>
-
-<!--  <div class="actions">-->
-<%#= f.submit "Log in" %>
-<!--  </div>-->
-
-<%#= render "users/shared/links" %>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'custom-input-form' }) do |f| %>
-
   <div class="container-fluid">
     <div class="row">
       <div class="custom-header">
@@ -52,31 +27,49 @@
       <div class="col-md-6">
         <div class="card">
           <div class="card-body">
-              <div class="form-row">
-                <div class="form-group col-md-12">
-                  <%= f.email_field :email, autofocus: true, placeholder: "Email", class: 'form-control', require: true %>
+            <% flash.each do |name, msg| %>
+              <% if msg.class == Array %>
+                <% msg.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              <% else %>
+                <li><%= msg %></li>
+              <% end %>
+            <% end %>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <%= f.email_field :email, autofocus: true, placeholder: "Email", class: 'form-control', require: false %>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <div class="password-icon">
+                  <%= f.password_field :password, placeholder: "Password", class: 'form-control pwd', require: false %>
+                  <i class="fa fa-eye icon-password" ></i>
                 </div>
               </div>
-              <div class="form-row">
-                <div class="form-group col-md-12">
-                  <div class="password-icon">
-                    <%= f.password_field :password, placeholder: "Password", class: 'form-control', require: true %>
-                    <i class="fa fa-eye icon-password"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="custom-forgot-password ml-auto">
-                <a href="#">Forgot Password?</a>
-              </div>
-              <div class="form-login-btn">
-                <%= f.submit "Log in", class: 'btn custom-login-btn' %>
-              </div>
-              <div class="custom-signup-text">
-                <span>Don't have an account?<a href="<%= new_user_registration_path %>">SignUp here</a></span>
-              </div>
+            </div>
+            <div class="custom-forgot-password ml-auto">
+              <a href="<%= new_user_password_path %>">Forgot Password?</a>
+            </div>
+            <div class="form-login-btn">
+              <%= f.submit "Log in", class: 'btn custom-login-btn' %>
+            </div>
+            <div class="custom-signup-text">
+              <span>Don't have an account?<a href="<%= new_user_registration_path %>">SignUp here</a></span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 <% end %>
+<script>
+    $(".fa-eye").on('click',function() {
+        if ($(".pwd").attr('type') === 'password') {
+            $(".pwd").attr('type', 'text');
+        } else {
+            $(".pwd").attr('type', 'password');
+        }
+    });
+</script>

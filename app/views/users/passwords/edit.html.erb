@@ -1,25 +1,54 @@
-<h2>Change your password</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
-
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: 'custom-input-form', method: :put }) do |f| %>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="custom-header">
+        <img src="<%= image_url('logo.svg') %>">
+      </div>
+      <div class="custom-user-header-details">
+        <!--      <h1>Someone</h1>-->
+        <!--      <p>someone@example.com</p>-->
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="container">
+    <div class="row">
+      <div class="custom-header-title">
+        <h1>Change your password</h1>
+      </div>
+    </div>
   </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="custom-screen-logo">
+          <img src="<%= image_url('screen-logo.svg') %>">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <%= render "users/shared/error_messages", resource: resource %>
+            <%= f.hidden_field :reset_password_token %>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <%= f.password_field :password, autofocus: true, placeholder: "New Password (8 length characters minimum)", class: 'form-control' %>
+              </div>
+            </div>
 
-  <div class="actions">
-    <%= f.submit "Change my password" %>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <%= f.password_field :password_confirmation, placeholder: "Confirm new password", class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-login-btn">
+              <%= f.submit "Change my password", class: 'btn custom-login-btn' %>
+            </div>
+            <div class="custom-signup-text">
+              <span>Don't have an account?<a href="<%= new_user_registration_path %>">SignUp here</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>
-
-<%= render "users/shared/links" %>

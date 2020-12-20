@@ -1,16 +1,65 @@
-<h2>Forgot your password?</h2>
+<!--<h2>Forgot your password?</h2>-->
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+<%#= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+
+<!--  <div class="field">-->
+<!--    <%#= f.label :email %><br />-->
+<%#= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<!--  </div>-->
+
+<!--  <div class="actions">-->
+<%#= f.submit "Send me reset password instructions" %>
+<!--  </div>-->
+<%# end %>
+
+<%#= render "users/shared/links" %>
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: 'custom-input-form', method: :post }) do |f| %>
+  <%#= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'custom-input-form' }) do |f| %>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="custom-header">
+        <img src="<%= image_url('logo.svg') %>">
+      </div>
+      <div class="custom-user-header-details">
+        <!--      <h1>Someone</h1>-->
+        <!--      <p>someone@example.com</p>-->
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+  <div class="container">
+    <div class="row">
+      <div class="custom-header-title">
+        <h1>Forgot Your Password?</h1>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="custom-screen-logo">
+          <img src="<%= image_url('screen-logo.svg') %>">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <%= render "users/shared/error_messages", resource: resource %>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <%= f.email_field :email, autofocus: true, placeholder: "Email", class: 'form-control', require: true %>
+              </div>
+            </div>
+            <div class="form-login-btn">
+              <%= f.submit "Send me reset password instructions", class: 'btn custom-login-btn' %>
+            </div>
+            <div class="custom-signup-text">
+              <span>Don't have an account?<a href="<%= new_user_registration_path %>">SignUp here</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>
-
-<%= render "users/shared/links" %>
