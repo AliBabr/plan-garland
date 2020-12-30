@@ -9,4 +9,5 @@ Rails.application.routes.draw do
       root "devise/sessions#new", as: :authenticated_root
     end
   end
+  resources :designs
 end

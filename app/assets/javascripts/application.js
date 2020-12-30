@@ -15,5 +15,6 @@
 //= require popper
 //= require bootstrap
 //= require activestorage
+//= require canvas.js
 //= require turbolinks
 //= require_tree .

@@ -1,0 +1,176 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="custom-header">
+      <img src="<%= image_url('logo.svg') %>">
+    </div>
+    <div class="custom-user-header-details">
+      <h1><%= current_user.username %></h1>
+      <p style="margin-bottom: 0px;"><%= current_user.email %></p>
+      <!--      <a href="<%#= destroy_user_session_path %>">logout</a>-->
+      <%= link_to destroy_user_session_path, method: :delete do %>
+        <i class="fa fa-lock"></i> Logout
+      <% end %>
+    </div>
+  </div>
+  <div class="">
+    <div class="">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= designs_path %>">Menu 1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#menu2">Menu 2</a>
+        </li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div id="home" class="container tab-pane active"><br>
+          <%= form_for @design do |f| %>
+            <% if @design and @design.errors.any? %>
+              <ul>
+                <% @design.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            <% end %>
+            <div id='input_form'>
+              <%= f.label "Design Name" %>
+              <%= f.text_field :name, class: 'form-control', required: true %>
+              <%#= f.label "What are You Designing today" %>
+
+              <%= f.radio_button :type, '1' %>
+              <%= label :type, 'Garlands' %>
+              <%= f.radio_button :type, '2' %>
+              <%= label :type, 'Arch' %>
+              <%= f.radio_button :type, '3' %>
+              <%= label :type, 'Column' %>
+              <%= f.radio_button :type, '4' %>
+              <%= label :type, 'Circle' %>
+              <%= f.radio_button :type, '5' %>
+              <%= label :type, 'Ballon Wall' %>
+              <%= f.radio_button :type, '6' %>
+              <%= label :type, 'Bouquet' %>
+              <br>
+              <button id='next_one' type="button" onclick="show_second_form()">Next</button>
+              <div id="second-part-form" style="display:none">
+                <%= f.label 'Customize Your Garlan' %>
+                <%= f.label "Height" %>
+                <%= f.text_field :height, id: 'height_field', class: 'form-control', required: true %>
+                <%= f.label "Width" %>
+                <%= f.text_field :width, id: 'width_field', class: 'form-control', required: true %>
+                <br>
+                <%= f.label "What Ballon size do you want to use:" %>
+                <button id='ballon_size_btn' type="button" onclick="show_ballon_size_form()">&#9660;</button>
+                <div id='ballon-size' style="display:none">
+                  <%= f.radio_button :ballon_size, '1' %>
+                  <%= label :type, '5"' %>
+                  <%= f.radio_button :ballon_size, '2' %>
+                  <%= label :type, '9"' %>
+                  <%= f.radio_button :ballon_size, '3' %>
+                  <%= label :type, '11"' %>
+                  <%= f.radio_button :ballon_size, '4' %>
+                  <%= label :type, '16"' %>
+                  <%= f.radio_button :ballon_size, '5' %>
+                  <%= label :type, '17" ' %>
+                  <%= f.radio_button :ballon_size, '6' %>
+                  <%= label :type, '18"' %>
+                  <%= f.radio_button :ballon_size, '7' %>
+                  <%= label :type, '24"' %>
+                  <%= f.radio_button :ballon_size, '8' %>
+                  <%= label :type, '36"' %>
+                </div>
+                <br>
+                <%= f.text_field :ballon_count, id: 'ballon_count_field', class: 'form-control', required: true %>
+                <br>
+                <button id='third_next' type="button" onclick="show_canvas()">Next</button>
+
+              </div>
+              <%#= f.submit "Save" %>
+            </div>
+            <div id='canvas_form' style="display:none">
+              <img id="scream" src="<%= image_url('b1.png') %>" alt="The Scream" width="40" height="40" style="display: none">
+              <canvas id="myCanvas" width="500" height="500"></canvas>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+    function show_second_form() {
+        $('#next_one').hide();
+        $("#second-part-form").show();
+    }
+
+    function show_ballon_size_form() {
+        $("#ballon-size").toggle();
+    }
+
+    function show_canvas() {
+        $("#input_form").hide();
+        $("#canvas_form").show();
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        var img = document.getElementById("scream");
+        if ($('input[name="design[type]"]:checked').val() == '5') {
+
+            var i, j;
+            for (i = 1; i <= 400; i = i + 20) {
+                ctx.drawImage(img, i + 10, 0, 80, 80);
+                ctx.drawImage(img, i + 10, 200, 80, 80);
+            }
+            for (j = 1; j <= 200; j = j + 20) {
+                ctx.drawImage(img, 1, j, 80, 80);
+                ctx.drawImage(img, 400, j, 80, 80);
+            }
+        } else {
+
+            // for (i = 1; i <= 400; i = i + 20) {
+            //     ctx.drawImage(img, i + 10, 0, 80, 80);
+            // }
+            // for (j = 1; j <= 200; j = j + 20) {
+            //     ctx.drawImage(img, 1, j, 80, 80);
+            //     ctx.drawImage(img, 400, j, 80, 80);
+            // }
+            // let radius = 100;                          // Arc radius
+            // let startAngle = 0;                           // Starting point on circle
+            // let endAngle = Math.PI + (Math.PI * 2) / 2; // End point on circle
+            // let anticlockwise = 0 % 2 == 1;                  // Draw anticlockwise
+            // ctx.arc(150, 150, radius, startAngle, endAngle, anticlockwise);
+            // var pat = ctx.createPattern(img, "repeat");
+            // ctx.strokeStyle = pat;
+            // ctx.stroke();
+            var pattern = ctx.createPattern(img, "repeat");
+            ctx.strokeStyle = pattern;
+            ctx.beginPath();
+            ctx.arc(123, 408, 80, 0, 1.5*Math.PI, false);
+            ctx.stroke();
+
+
+
+
+        }
+
+
+    }
+
+    $('input:radio[name="design[ballon_size]"]').change(
+        function () {
+            if ($(this).is(':checked')) {
+                console.log($(this).val());
+                // (
+                var height = $("#height_field").val() / 2.54;
+                var width = $("#width_field").val() / 2.54;
+                debugger;
+                var diameter = <%= Design.sizes.key(0).to_i %>;
+                console.log(diameter);
+                $("#ballon_count_field").val(((height / width) / diameter) * 4.8);
+
+            }
+        });
+
+</script>

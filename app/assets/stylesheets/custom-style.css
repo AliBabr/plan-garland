@@ -176,17 +176,21 @@ form.custom-input-form .form-group input {
     margin: 10px;
 }
 
-.custom-card img {
+.custom-card-img {
     margin: 50px;
     height: 100px;
 }
 
-.custom-card h1 {
+.custom-card-h1  {
     margin-top: 20px;
     font-weight: 400;
     font-size: 42px;
+    color: black;
 }
 
+.custom-a-tag{
+    text-decoration: none !important;
+}
 .error {
     border: 1px solid red !important;
 }
