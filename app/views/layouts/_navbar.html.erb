@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="custom-header">
+      <img src="<%= image_url('logo.svg') %>">
+    </div>
+    <% if current_user.present? %>
+      <div class="custom-user-header-details">
+        <h1><%= current_user.username %></h1>
+        <p style="margin-bottom: 0px;"><%= current_user.email %></p>
+        <!--      <a href="<%#= destroy_user_session_path %>">logout</a>-->
+        <%= link_to destroy_user_session_path, method: :delete do %>
+          <i class="fa fa-lock"></i> Logout
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

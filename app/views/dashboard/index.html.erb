@@ -1,45 +1,31 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="custom-header">
-      <img src="<%= image_url('logo.svg') %>">
-    </div>
-    <div class="custom-user-header-details">
-      <h1><%= current_user.username %></h1>
-      <p style="margin-bottom: 0px;"><%= current_user.email %></p>
-      <!--      <a href="<%#= destroy_user_session_path %>">logout</a>-->
-      <%= link_to destroy_user_session_path, method: :delete do %>
-        <i class="fa fa-lock"></i> Logout
-      <% end %>
-    </div>
-  </div>
-  <div class="wrapper">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <%= link_to new_design_path, class: 'custom-a-tag' do %>
-            <div class="custom-card">
-              <div class="custom-icon">
-                <img class="custom-card-img" src="<%= image_url('new-design.png') %>">
-              </div>
-              <h1 class="custom-card-h1">New Design</h1>
-            </div>
-          <% end %>
-        </div>
-        <div class="col-md-4">
+
+<div class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <%= link_to new_design_path, class: 'custom-a-tag' do %>
           <div class="custom-card">
             <div class="custom-icon">
-              <img class="custom-card-img" src="<%= image_url('my-design-icon.png') %>">
+              <img class="custom-card-img" src="<%= image_url('new-design.png') %>">
             </div>
-            <h1 class="custom-card-h1">My Design</h1>
+            <h1 class="custom-card-h1">New Design</h1>
           </div>
+        <% end %>
+      </div>
+      <div class="col-md-4">
+        <div class="custom-card">
+          <div class="custom-icon">
+            <img class="custom-card-img" src="<%= image_url('my-design-icon.png') %>">
+          </div>
+          <h1 class="custom-card-h1">My Design</h1>
         </div>
-        <div class="col-md-4">
-          <div class="custom-card">
-            <div class="custom-icon">
-              <img class="custom-card-img" src="<%= image_url('library.png') %>">
-            </div>
-            <h1 class="custom-card-h1">Library</h1>
+      </div>
+      <div class="col-md-4">
+        <div class="custom-card">
+          <div class="custom-icon">
+            <img class="custom-card-img" src="<%= image_url('library.png') %>">
           </div>
+          <h1 class="custom-card-h1">Library</h1>
         </div>
       </div>
     </div>

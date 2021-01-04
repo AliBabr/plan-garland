@@ -1,156 +1,398 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="custom-header">
-      <img src="<%= image_url('logo.svg') %>">
-    </div>
-    <div class="custom-user-header-details">
-      <h1><%= current_user.username %></h1>
-      <p style="margin-bottom: 0px;"><%= current_user.email %></p>
-      <!--      <a href="<%#= destroy_user_session_path %>">logout</a>-->
-      <%= link_to destroy_user_session_path, method: :delete do %>
-        <i class="fa fa-lock"></i> Logout
-      <% end %>
-    </div>
-  </div>
-  <div class="">
-    <div class="">
-      <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<%= designs_path %>">Menu 1</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#menu2">Menu 2</a>
-        </li>
-      </ul>
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <div id="home" class="container tab-pane active"><br>
-          <%= form_for @design do |f| %>
-            <% if @design and @design.errors.any? %>
-              <ul>
-                <% @design.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
+<div class="container custom-container">
+  <section id="tabs" class="project-tab">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <nav>
+            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active custom-active custom-tab-a" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">+
+                New Design</a>
+              <a class="nav-item nav-link custom-tab-a" id="nav-profile-tab" href="<%= designs_path %>">Project
+                Tab 2</a>
+              <a class="nav-item nav-link custom-tab-a" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Project
+                Tab 3</a>
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+              <%= form_for @design do |f| %>
+                <% if @design and @design.errors.any? %>
+                  <ul>
+                    <% @design.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                  </ul>
                 <% end %>
-              </ul>
-            <% end %>
-            <div id='input_form'>
-              <%= f.label "Design Name" %>
-              <%= f.text_field :name, class: 'form-control', required: true %>
-              <%#= f.label "What are You Designing today" %>
-
-              <%= f.radio_button :type, '1' %>
-              <%= label :type, 'Garlands' %>
-              <%= f.radio_button :type, '2' %>
-              <%= label :type, 'Arch' %>
-              <%= f.radio_button :type, '3' %>
-              <%= label :type, 'Column' %>
-              <%= f.radio_button :type, '4' %>
-              <%= label :type, 'Circle' %>
-              <%= f.radio_button :type, '5' %>
-              <%= label :type, 'Ballon Wall' %>
-              <%= f.radio_button :type, '6' %>
-              <%= label :type, 'Bouquet' %>
-              <br>
-              <button id='next_one' type="button" onclick="show_second_form()">Next</button>
-              <div id="second-part-form" style="display:none">
-                <%= f.label 'Customize Your Garlan' %>
-                <%= f.label "Height" %>
-                <%= f.text_field :height, id: 'height_field', class: 'form-control', required: true %>
-                <%= f.label "Width" %>
-                <%= f.text_field :width, id: 'width_field', class: 'form-control', required: true %>
-                <br>
-                <%= f.label "What Ballon size do you want to use:" %>
-                <button id='ballon_size_btn' type="button" onclick="show_ballon_size_form()">&#9660;</button>
-                <div id='ballon-size' style="display:none">
-                  <%= f.radio_button :ballon_size, '1' %>
-                  <%= label :type, '5"' %>
-                  <%= f.radio_button :ballon_size, '2' %>
-                  <%= label :type, '9"' %>
-                  <%= f.radio_button :ballon_size, '3' %>
-                  <%= label :type, '11"' %>
-                  <%= f.radio_button :ballon_size, '4' %>
-                  <%= label :type, '16"' %>
-                  <%= f.radio_button :ballon_size, '5' %>
-                  <%= label :type, '17" ' %>
-                  <%= f.radio_button :ballon_size, '6' %>
-                  <%= label :type, '18"' %>
-                  <%= f.radio_button :ballon_size, '7' %>
-                  <%= label :type, '24"' %>
-                  <%= f.radio_button :ballon_size, '8' %>
-                  <%= label :type, '36"' %>
+                <div id="first-form">
+                  <div class="container" style="margin-top: 30px">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="custom-form-section-start">
+                          <form>
+                            <div class="form-group row">
+                              <label class="col-md-3 col-form-label custom-label">Name of your design</label>
+                              <div class="col-sm-3">
+                                <%= f.text_field :name, class: 'form-control custom-input-form', required: true %>
+                              </div>
+                            </div>
+                          </form>
+                          <div class="row">
+                            <label class="col-md-12 col-form-label custom-label">What are You Designing Today:</label>
+                            <div class="col-md-4">
+                              <div class="main-btn-section custom-store-tab">
+                                <label class="mt-3">
+                                  <%= f.radio_button :type, '1', class: "card-input-element d-none" %>
+                                  <div class="card card-body ">
+                                    Garlands
+                                  </div>
+                                </label>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="main-btn-section custom-store-tab">
+                                <label class="mt-3">
+                                  <%= f.radio_button :type, '2', class: "card-input-element d-none" %>
+                                  <div class="card card-body text-center">
+                                    Arch
+                                  </div>
+                                </label>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="main-btn-section custom-store-tab">
+                                <label class="mt-3 ">
+                                  <%= f.radio_button :type, '3', class: "card-input-element d-none" %>
+                                  <div class="card card-body text-center">
+                                    Column
+                                  </div>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div class="main-btn-section custom-store-tab">
+                                <label class="mt-3">
+                                  <%= f.radio_button :type, '4', class: "card-input-element d-none" %>
+                                  <div class="card card-body text-center">
+                                    Circle
+                                  </div>
+                                </label>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="main-btn-section custom-store-tab">
+                                <label class="mt-3">
+                                  <%= f.radio_button :type, '5', class: "card-input-element d-none" %>
+                                  <div class="card card-body text-center">
+                                    Balloon Wall
+                                  </div>
+                                </label>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="main-btn-section custom-store-tab">
+                                <label class="mt-3 ">
+                                  <%= f.radio_button :type, '6', class: "card-input-element d-none" %>
+                                  <div class="card card-body text-center">
+                                    Bouquet
+                                  </div>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="container" style="text-align: center; margin-top: 20px; margin-bottom: 10px;">
+                    <button class="btn file-btn" type="button" onclick="show_second_form()">Next</button>
+                  </div>
+                  <div class="custom-checkbox-form" id='second-part-form' style="display: none">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="custom-form-section-start">
+                            <div>
+                              <h4 for="staticEmail">Customize Your Garlands</h4>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                                <div class="checkbox-size">
+                                  <div class="form-group">
+                                    <div class="form-group row">
+                                      <label class="col-md-3 col-form-label custom-label">Height</label>
+                                      <div class="col-md-6">
+                                        <%= f.text_field :height, id: 'width_field', class: 'form-control', required: true %>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                                <div class="checkbox-size">
+                                  <form>
+                                    <div class="form-group">
+                                      <div class="form-group row">
+                                        <label class="col-md-3 col-form-label custom-label">Width:</label>
+                                        <div class="col-md-6">
+                                          <%= f.text_field :width, id: 'height_field', class: 'form-control', required: true %>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="custom-form-section-start">
+                                  <div class="form-group row">
+                                    <label for="staticEmail" class="col-md-5 col-form-label custom-label">what baloon
+                                      size
+                                      whould you
+                                      like to use:</label>
+                                    <button class="btn file-btn" type="button" onclick="show_second_form()">v</button>
+                                  </div>
+                                  <div class="container ballon-size">
+                                    <div class="row">
+                                      <div class="col-md-4"></div>
+                                      <div class="col-md-8">
+                                        <div class="col-sm-5">
+                                          <div>
+                                            <%= f.radio_button :ballon_size, '1' %>
+                                            <%= label :type, '5"' %>
+                                            <%= f.radio_button :ballon_size, '2' %>
+                                            <%= label :type, '9"' %>
+                                          </div>
+                                          <div>
+                                            <%= f.radio_button :ballon_size, '3' %>
+                                            <%= label :type, '11"' %>
+                                            <%= f.radio_button :ballon_size, '4' %>
+                                            <%= label :type, '16"' %>
+                                          </div>
+                                          <div>
+                                            <%= f.radio_button :ballon_size, '5' %>
+                                            <%= label :type, '17" ' %>
+                                            <%= f.radio_button :ballon_size, '6' %>
+                                            <%= label :type, '18"' %>
+                                          </div>
+                                          <div>
+                                            <%= f.radio_button :ballon_size, '7' %>
+                                            <%= label :type, '24"' %>
+                                            <%= f.radio_button :ballon_size, '8' %>
+                                            <%= label :type, '36"' %>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="staticEmail" class="col-md-4 col-form-label custom-label">Number of
+                              ballons:</label>
+                            <%= f.text_field :ballon_count, id: 'ballon_count_field', class: 'form-control col-md-8', required: true %>
+                          </div>
+                          <div class="container" style="text-align: center; margin-top: 20px; margin-bottom: 10px;">
+                            <button class="btn file-btn" type="button" onclick="show_third_form()">Next</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <br>
-                <%= f.text_field :ballon_count, id: 'ballon_count_field', class: 'form-control', required: true %>
-                <br>
-                <button id='third_next' type="button" onclick="show_canvas()">Next</button>
 
-              </div>
-              <%#= f.submit "Save" %>
+                <div class="custom-design-screen-section" id="third-form" style="display: none">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="create-save-btn">
+                          <button class="btn file-btn">Save</button>
+                          <button class="btn  file-btn">Download</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="custom-options-btns">
+                          <button class="btn btn- auth-provider google-login  opt-btn-style"> Adjust</button>
+                          <button class="btn btn- auth-provider google-login  opt-btn-style"> Add Balloons
+                          </button>
+                          <button class="btn btn- auth-provider google-login  opt-btn-style"> Colors</button>
+                          <button class="btn btn- auth-provider google-login  opt-btn-style"> Upload
+                            Background
+                          </button>
+                          <button class="btn btn- auth-provider google-login  opt-btn-style"> Decore</button>
+                          <button class="btn btn- auth-provider google-login  opt-btn-style"> Text</button>
+                        </div>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="custom-diagram-sections">
+                          <canvas id="c" style="width: 100%; height: 100%"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
             </div>
-            <div id='canvas_form' style="display:none">
-              <img id="scream" src="<%= image_url('b1.png') %>" alt="The Scream" width="40" height="40" style="display: none">
-              <canvas id="myCanvas" width="500" height="500"></canvas>
-            </div>
-          <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </div>
 <script>
     function show_second_form() {
-        $('#next_one').hide();
         $("#second-part-form").show();
     }
 
-    function show_ballon_size_form() {
-        $("#ballon-size").toggle();
+    function show_third_form() {
+        $("#first-form").hide();
+        $("#third-form").show();
+        show_canvas();
     }
 
     function show_canvas() {
-        $("#input_form").hide();
-        $("#canvas_form").show();
-        var c = document.getElementById("myCanvas");
-        var ctx = c.getContext("2d");
-        var img = document.getElementById("scream");
         if ($('input[name="design[type]"]:checked').val() == '5') {
 
-            var i, j;
-            for (i = 1; i <= 400; i = i + 20) {
-                ctx.drawImage(img, i + 10, 0, 80, 80);
-                ctx.drawImage(img, i + 10, 200, 80, 80);
+            function preLoadImage(bPath) {
+                return new Promise(function (resolve, reject) {
+                    fabric.Image.fromURL(bPath, function (img) {
+                        resolve(img);
+                    })
+                });
             }
-            for (j = 1; j <= 200; j = j + 20) {
-                ctx.drawImage(img, 1, j, 80, 80);
-                ctx.drawImage(img, 400, j, 80, 80);
+
+            function calculatePixelsCM(grid, garland) {
+                const _screenSize = {
+                    width: grid.width,
+                    height: grid.width / (garland.width / garland.height)
+                };
+                if (_screenSize.height > grid.height) {
+                    _screenSize.width /= _screenSize.height / grid.height;
+                    _screenSize.height = grid.height;
+                }
+                return _screenSize.width / garland.width / 1.15;
             }
+
+            var imgElement = document.getElementById('baloon-red');
+
+            const CanP = 80;
+
+            const gridSizeInPx = {w: 650};
+            const garlanSize = {w: parseFloat($("#width_field").val()), h: parseFloat($("#height_field").val())}; // In CM
+            const baloonDiameter = 20;   // CM
+
+
+            const baloonCountX = Math.ceil((garlanSize.w / baloonDiameter) * 4.8);
+            const baloonCountY = Math.ceil((garlanSize.h / baloonDiameter) * 4.8);
+            const baloonCount = baloonCountX + baloonCountY;
+
+
+            gridSizeInPx.h = gridSizeInPx.w * (garlanSize.h / garlanSize.w);
+
+            const canvasEl = document.getElementById('c');
+            canvasEl.width = gridSizeInPx.w;
+            canvasEl.height = gridSizeInPx.h;
+
+            var canvas = new fabric.Canvas('c', {selection: false, preserveObjectStacking: true});
+
+            const pixelPerCm = calculatePixelsCM({width: gridSizeInPx.w, height: gridSizeInPx.h}, {
+                width: garlanSize.w,
+                height: garlanSize.h
+            });//(canvas.width-CanP*2) / garlanSize.w;
+            function drawBaloon(bPath = "<%= image_url('balloon-red.png') %>", data) {
+
+                fabric.Image.fromURL(bPath, function (img) {
+                    img.scaleToWidth(pixelPerCm * baloonDiameter);
+                    img.set({
+                        ...data,
+                        opacity: 1,
+                        selectable: true
+                    });
+                    canvas.add(img);
+                });
+            }
+
+
+            // Square
+            const PADDING = 10;
+            Promise.all([preLoadImage("<%= image_url('balloon-red.png') %>"), preLoadImage("<%= image_url('balloon-blue.png') %>")])
+                .then(function () {
+                    const singleRowBaloonX = garlanSize.w / baloonDiameter;
+                    const singleRowBaloonY = garlanSize.h / baloonDiameter;
+                    var direction = {x: 0, y: 0};
+                    var offset = {x: 0, y: 0};
+                    var position = 1;
+                    var lineCount = 0;
+
+                    var angle = 0;
+                    for (var i = 0; i < baloonCount; i++) {
+                        offset.y = (lineCount * PADDING);
+                        offset.x = (lineCount * PADDING);
+
+                        drawBaloon((lineCount % 2 == 0) ? "<%= image_url('balloon-red.png') %>" : "<%= image_url('balloon-blue.png') %>", {
+                            left: (offset.x) + direction.x * (pixelPerCm * baloonDiameter),
+                            top: (offset.y) + direction.y * (pixelPerCm * baloonDiameter),
+                            angle: angle,
+                            // originX: 'center',
+                            // originY: 'center'
+                        });
+
+                        if (position === 1) {
+                            direction.x += 1;
+                        }
+
+                        if (position === 2) {
+                            direction.y += 1;
+                        }
+
+                        if (position === 3) {
+                            direction.x -= 1;
+                        }
+
+                        if (position === 4) {
+                            direction.y -= 1;
+                        }
+
+                        if (direction.x == singleRowBaloonX - 1 && direction.y === 0) {
+                            position = 2;
+                        }
+                        if (direction.y == singleRowBaloonY - 1 && direction.x === singleRowBaloonX - 1) {
+                            position = 3;
+                            // offset.y -= (lineCount*2 * PADDING);
+                            // offset.x += (lineCount * PADDING);
+                        }
+
+                        if (direction.x === 0 && direction.y == singleRowBaloonY - 1) {
+                            position = 4;
+                            // offset.y = (lineCount * PADDING)
+                            // offset.x += (lineCount * PADDING);
+                        }
+
+                        if (direction.x === 0 & direction.y === 0) {
+                            position = 1;
+                            lineCount += 1;
+                            // offset.y += lineCount * PADDING;
+                            // offset.x = (lineCount * PADDING)
+
+                            // offset.y += (lineCount * PADDING);
+
+                        }
+
+                        // if  (lineCount==1) break;
+
+                    }
+
+                });
+
         } else {
-
-            // for (i = 1; i <= 400; i = i + 20) {
-            //     ctx.drawImage(img, i + 10, 0, 80, 80);
-            // }
-            // for (j = 1; j <= 200; j = j + 20) {
-            //     ctx.drawImage(img, 1, j, 80, 80);
-            //     ctx.drawImage(img, 400, j, 80, 80);
-            // }
-            // let radius = 100;                          // Arc radius
-            // let startAngle = 0;                           // Starting point on circle
-            // let endAngle = Math.PI + (Math.PI * 2) / 2; // End point on circle
-            // let anticlockwise = 0 % 2 == 1;                  // Draw anticlockwise
-            // ctx.arc(150, 150, radius, startAngle, endAngle, anticlockwise);
-            // var pat = ctx.createPattern(img, "repeat");
-            // ctx.strokeStyle = pat;
-            // ctx.stroke();
-            var pattern = ctx.createPattern(img, "repeat");
-            ctx.strokeStyle = pattern;
-            ctx.beginPath();
-            ctx.arc(123, 408, 80, 0, 1.5*Math.PI, false);
-            ctx.stroke();
-
-
 
 
         }
@@ -158,19 +400,6 @@
 
     }
 
-    $('input:radio[name="design[ballon_size]"]').change(
-        function () {
-            if ($(this).is(':checked')) {
-                console.log($(this).val());
-                // (
-                var height = $("#height_field").val() / 2.54;
-                var width = $("#width_field").val() / 2.54;
-                debugger;
-                var diameter = <%= Design.sizes.key(0).to_i %>;
-                console.log(diameter);
-                $("#ballon_count_field").val(((height / width) / diameter) * 4.8);
 
-            }
-        });
 
 </script>

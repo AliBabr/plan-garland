@@ -181,16 +181,167 @@ form.custom-input-form .form-group input {
     height: 100px;
 }
 
-.custom-card-h1  {
+.custom-card-h1 {
     margin-top: 20px;
     font-weight: 400;
     font-size: 42px;
     color: black;
 }
 
-.custom-a-tag{
+.custom-a-tag {
     text-decoration: none !important;
 }
+
 .error {
     border: 1px solid red !important;
+}
+
+.custom-container {
+    padding-top: 10px;
+}
+
+.custom-tab-a {
+    margin: 0px 20px 0px 20px;
+
+}
+
+.nav-tabs {
+    border-bottom: 1px solid #FFFFFF;
+}
+
+.custom-active {
+    border-width: medium !important;
+    color: #FF4444 !important;
+    border-top-color: #FF4444 !important;
+    border-left-color: #FF4444 !important;
+    border-right-color: #FF4444 !important;
+    border-bottom-color: #FFFFFF !important;
+    text-align: center;
+    line-height: 50px !important;
+    font-size: 20px;
+    border-radius: 5px 5px !important;
+}
+
+.custom-label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+custom-store-tab label {
+    width: 100%;
+    font-size: 1rem;
+}
+
+.custom-store-tab .card-input-element + .card {
+    /*height: calc(36px + 2*1rem);
+  */
+    font-family: system-ui, roboto, sans-serif;
+    font-weight: 500;
+    width: 280px;
+    height: 180px;
+
+    background-color: #fff;
+    line-height: 40px;
+    padding: 10px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-sizing: border-box;
+    border: 1px solid #d6d9dc;
+    text-align: center;
+    margin: 0px auto;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25)
+}
+
+.custom-store-tab .card-input-element + .card:hover {
+    cursor: pointer;
+}
+
+.custom-store-tab .card-input-element:checked + .card {
+    border: 2px solid rgb(255 0 117);
+    -webkit-transition: border .3s;
+    -o-transition: border .3s;
+    transition: border .3s;
+}
+
+/*.custom-store-tab .card-input-element:checked+.card::after {
+  content: '\e5ca';
+  color: #AFB8EA;
+  font-family: 'Material Icons';
+  font-size: 54px;
+  -webkit-animation-name: fadeInCheckbox;
+  animation-name: fadeInCheckbox;
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
+  -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}*/
+
+/*------------- custom-css-------------*/
+
+.checkbox-size {
+    width: 200px;
+    margin: 0px auto;
+}
+
+.custom-cards-btn-section {
+
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.custom-checkbox-form {
+
+    margin: 20px 0px;
+    padding: 10px;
+}
+
+.create-save-btn {
+
+    float: right;
+}
+
+.file-btn {
+
+    background-color: #f5eded;
+    padding: 7px 10px;
+    width: 120px;
+    text-align: center;
+    color: #444;
+    font-weight: 500;
+    font-size: 15px;
+    border: 2px solid #f12626f2;
+    margin: 0px 5px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.custom-options-btns .opt-btn-style {
+
+    margin: 10px auto;
+    width: 300px;
+    border: 2px solid red;
+
+}
+
+.custom-options-btns .opt-btn-style:hover {
+
+
+    border: 2px solid red;
+    background-color: #ff4747;
+    color: #fff;
+
+}
+
+.custom-diagram-sections {
+
+    background-color: #f7f7f7;
+    padding: 20px;
+    margin: 30px 0px;
+
+}
+
+.custom-options-btns {
+    margin: 30px 0px;
+
+
 }
