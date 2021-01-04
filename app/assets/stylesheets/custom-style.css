@@ -257,7 +257,7 @@ custom-store-tab label {
 }
 
 .custom-store-tab .card-input-element:checked + .card {
-    border: 2px solid rgb(255 0 117);
+    border: 2px solid rgba(255 0 117,1);
     -webkit-transition: border .3s;
     -o-transition: border .3s;
     transition: border .3s;
